@@ -8,12 +8,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Hello World',
-      home: MyHomePage(),
+      home: MyHome(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHome extends StatefulWidget {
+  _MyHomeState createState() => _MyHomeState();
+}
+
+class _MyHomeState extends State<MyHome> {
+  bool eng = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +31,7 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          'Hello, World!',
+          eng ? 'Hello, World!' : 'हैलो, वर्ल्ड!',
           style: TextStyle(
             color: Colors.grey[100],
             fontWeight: FontWeight.bold,
@@ -34,6 +39,14 @@ class MyHomePage extends StatelessWidget {
             letterSpacing: 2.0,
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            eng = !eng;
+          });
+        },
+        child: Icon(Icons.refresh),
       ),
     );
   }
